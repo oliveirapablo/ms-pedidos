@@ -7,6 +7,7 @@
     "start": "node dist/src/main/server.js",
     "dev": "sucrase-node src/main/server.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "build": "rimraf dist && tsc",
     "test:verbose": "jest --passWithNoTests",
     "test:ci": "npm test -- --coverage",
     "prepare": "husky install"
