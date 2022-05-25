@@ -1,0 +1,88 @@
+  swagger: "2.0"
+  info: 
+    version: "1.0.0"
+    title: "Microservices Pedido"
+  host: "localhost:3002"
+  paths: 
+    
+    /v1/api/request-items: 
+      post: 
+        tags: 
+          - "Pedido"
+        summary: "Criar Pedido."
+        description: "Criação de Pedido."
+        parameters:
+          -
+            in: "body"
+            name: "Pedido"
+            required: true
+            description: ""
+            schema:
+              $ref: '#/definitions/RequestItems'
+        responses: 
+          200: 
+            description: "Consulta realizada com sucesso."
+            schema:
+              $ref: '#/definitions/response200'
+          400: 
+            description: "Erro ao validar os campos, por favor revise os dados de acordo com a mensagem de erro."
+            schema: 
+              $ref: "#/definitions/error500"
+      
+  definitions:
+    Item:
+      type: "object"
+      properties:
+        itemId: 
+          type: "string"
+          example: "asa131233432fewaf23234f"
+        name: 
+          type: "string"
+          example: "Frango Assado"
+        description: 
+          type: "string"
+          example: "Frango assado e farofa"
+        category:
+          type: "string"
+          example: "Assados"
+        quantity: 
+          type: "integer"
+          example: 20
+        unitaryValue:
+          type: "integer"
+          example: 19.90
+    RequestItems:
+      type: "object"
+      properties:
+        documentClient:
+          type: "string"
+          example: "440.657.146-36"
+        items:
+          type: "array"
+          items:
+            $ref: '#/definitions/Item'
+          
+    response200:
+      type: "object"
+      properties:
+        documentClient:
+          type: "string"
+          example: "440.657.146-36"
+        amountRequest:
+          type: "integer"
+          example: 398.0
+        items:
+          type: "array"
+          items:
+            $ref: '#/definitions/Item'
+    error500: 
+      type: "object"
+      properties: 
+        statusCode: 
+          type: "integer"
+          example: 500
+        error: 
+          type: "string"
+          example: "Internal Server Error"
+        
+
