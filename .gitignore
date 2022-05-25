@@ -1,0 +1,6 @@
+node_modules
+docker/kafka/data
+dist
+globalConfig.json
+.env
+coverage
